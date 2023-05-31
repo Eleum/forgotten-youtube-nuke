@@ -34,8 +34,5 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "yarn@3.5.1",
-  "devDependencies": {
-    "@types/testing-library__jest-dom": "^5.14.6"
-  }
+  "packageManager": "yarn@3.5.1"
 }
