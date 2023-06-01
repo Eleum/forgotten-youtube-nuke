@@ -1,22 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { YoutubeTracking } from './youtube-tracking';
 
 function App() {
+  const MISSING_PERMISSION_TAB = "Extension is missing \"tab\" permission";
+
+  if (!chrome.tabs && process.env.NODE_ENV !== "development") {
+    console.error(MISSING_PERMISSION_TAB);
+    return(<>{MISSING_PERMISSION_TAB}</>);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
       <YoutubeTracking />
     </div>
   );
