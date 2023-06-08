@@ -4,7 +4,6 @@ const UNDEFINED_TAB = "UNDEFINED TAB";
 
 export async function getTabsByQuery(query: chrome.tabs.QueryInfo) : Promise<TrackingTabData[]> {
     let tabs = await chrome.tabs.query(query);
-
     console.log(tabs);
 
     return tabs.map(tab => ({

@@ -1,6 +1,6 @@
 import './App.css';
-import { DummyTracking } from './tabs-tracking/dummy-tracking/dummy-tracking';
-import { YoutubeTracking } from './tabs-tracking/youtube-tracking/youtube-tracking';
+import { DummyTracking } from './tabs-tracking/context/dummy-tracking/dummy-tracking';
+import { YoutubeTracking } from './tabs-tracking/context/youtube-tracking/youtube-tracking';
 
 function App() {
   const MISSING_PERMISSION_TAB = "Extension is missing \"tab\" permission";
@@ -15,9 +15,11 @@ function App() {
 
   return (
     <div className="App">
-      {missingPermissons
-        ? (<DummyTracking />)
-        : (<YoutubeTracking />)}
+      {missingPermissons ? (
+        <DummyTracking />
+      ) : (
+        <YoutubeTracking />
+      )}
     </div>
   );
 }

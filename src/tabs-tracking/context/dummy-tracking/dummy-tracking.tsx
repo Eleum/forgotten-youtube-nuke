@@ -1,6 +1,6 @@
 import { YouTube } from "@mui/icons-material";
 import { Button, Tooltip } from "@mui/material";
-import { TrackingTabData } from "../types/tracking-tab-data";
+import { TrackingTabData } from "../../types/tracking-tab-data";
 
 export function DummyTracking() {
     const dummyData: TrackingTabData[] = [

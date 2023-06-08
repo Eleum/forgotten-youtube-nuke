@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getTabsByQuery } from "../services/tabs-api-service";
-import { TrackingTabData } from "../types/tracking-tab-data";
+import { getTabsByQuery } from "../../services/tabs-api-service";
+import { TrackingTabData } from "../../types/tracking-tab-data";
 
 export function YoutubeTracking() {
     const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/)/;
