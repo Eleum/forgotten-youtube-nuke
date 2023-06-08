@@ -24,7 +24,28 @@ export function YoutubeTracking() {
         let query: chrome.tabs.QueryInfo = { /*get any tabs*/ };
 
         populateTabsData(query);
+        
     }, []);
+
+    useEffect(() => {
+        const updateBadge = async () => {
+            let text = tabs.length.toString();
+            console.log(text);
+
+            let actions = [
+                chrome.action.setBadgeText({
+                    text: text
+                }),
+                chrome.action.setBadgeBackgroundColor({
+                    color: "#5c5c5c"
+                })
+            ]
+
+            await Promise.all(actions);
+        }
+
+        updateBadge();
+    }, [tabs])
 
     const toTabComponent = (tab: TrackingTabData) => {
         return (
