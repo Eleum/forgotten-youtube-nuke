@@ -1,4 +1,6 @@
-export interface TrackingTabData {
+export interface TrackingTab {
+    id?: number;
+    windowId: number;
     url: string;
     title?: string;
     favIconUrl?: string;
