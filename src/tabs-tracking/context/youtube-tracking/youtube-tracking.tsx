@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTabsByQuery } from "../../services/tabs-api-service";
 import { TrackingTab } from "../../types/tracking-tab";
-import { saveTabsData } from "../../services/storage-service";
+import { storeTabsData } from "../../services/storage-service";
 
 export function YoutubeTracking() {
     const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/)/;
@@ -9,24 +9,19 @@ export function YoutubeTracking() {
     const [tabs, setTabs] = useState<TrackingTab[]>([]);
 
     useEffect(() => {
-        const populateTabsData = async (query: chrome.tabs.QueryInfo) => {
+        const initializeTabs = async (query: chrome.tabs.QueryInfo) => {
             let tabs = await getTabsByQuery(query);
             console.log(tabs);
 
-            tabs.forEach(tab => {
-                if (!tab.url?.match(youtubeRegex)) {
-                    tab.title = "UNMATCHED | " + tab.title;
-                }
-            });
+            tabs = tabs.filter(tab => tab.url?.match(youtubeRegex));
 
             setTabs(tabs);
-            saveTabsData(...tabs);
+            storeTabsData(...tabs);
         };
 
         let query: chrome.tabs.QueryInfo = { /*get any tabs*/ };
 
-        populateTabsData(query);
-
+        initializeTabs(query);
     }, []);
 
     useEffect(() => {

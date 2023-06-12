@@ -4,15 +4,16 @@ import { TrackingTabDataModel } from "../types/tracking-tab-data-model";
 const UNDEFINED_TAB_ID = "UNDEFINED-TAB-ID";
 const SESSION_STORAGE_KEY = "SESSION-TABS";
 
-export function saveTabsData(...tabs: TrackingTab[]) {
+export function storeTabsData(...tabs: TrackingTab[]) {
     const generateId = (tab: TrackingTab) => {
         return `${tab.windowId}.${tab.id ?? UNDEFINED_TAB_ID}`;
     };
 
-    const currentTimestamp = Date.now();
+    const now = Date.now();
+
     let models = tabs.map(tab => ({
         id: generateId(tab),
-        openedDateTimestamp: currentTimestamp
+        openedDateTimestamp: now
     }) as TrackingTabDataModel);
 
     return chrome.storage.session.set({
