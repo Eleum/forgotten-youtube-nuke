@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTabsByQuery } from "../../services/tabs-api-service";
 import { TrackingTab } from "../../types/tracking-tab";
+import { saveTabsData } from "../../services/storage-service";
 
 export function YoutubeTracking() {
     const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/)/;
@@ -19,12 +20,13 @@ export function YoutubeTracking() {
             });
 
             setTabs(tabs);
+            saveTabsData(...tabs);
         };
 
         let query: chrome.tabs.QueryInfo = { /*get any tabs*/ };
 
         populateTabsData(query);
-        
+
     }, []);
 
     useEffect(() => {
