@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { getTabsByQuery } from "../../services/tabs-api-service";
-import { TrackingTabData } from "../../types/tracking-tab-data";
+import { TrackingTab } from "../../types/tracking-tab";
 
 export function YoutubeTracking() {
     const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/)/;
 
-    const [tabs, setTabs] = useState<TrackingTabData[]>([]);
+    const [tabs, setTabs] = useState<TrackingTab[]>([]);
 
     useEffect(() => {
         const populateTabsData = async (query: chrome.tabs.QueryInfo) => {
@@ -45,12 +45,13 @@ export function YoutubeTracking() {
         }
 
         updateBadge();
-    }, [tabs])
+    }, [tabs]);
 
-    const toTabComponent = (tab: TrackingTabData) => {
+    //TODO: move into separate module?
+    const toTabComponent = (tab: TrackingTab) => {
         return (
             <li>
-                <img src={tab.favIconUrl} style={{height: 16, width: 16}}></img>
+                <img src={tab.favIconUrl} style={{ height: 16, width: 16 }}></img>
                 {tab.title} | {tab.url}
             </li>
         );

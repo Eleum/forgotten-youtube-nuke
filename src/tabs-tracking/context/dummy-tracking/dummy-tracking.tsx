@@ -1,30 +1,33 @@
 import { YouTube } from "@mui/icons-material";
 import { Button, Tooltip } from "@mui/material";
-import { TrackingTabData } from "../../types/tracking-tab-data";
+import { TrackingTab } from "../../types/tracking-tab";
 
 export function DummyTracking() {
-    const dummyData: TrackingTabData[] = [
+    const dummyData: TrackingTab[] = [
         {
-            favIconUrl: "https://www.youtube.com/s/desktop/286e6262/img/favicon_32x32.png",
-            title: "21313213123 - YouTube",
+            windowId: 1,
             url: "https://www.youtube.com/watch?v=L2Wnq0ChAIA",
+            title: "21313213123 - YouTube",
+            favIconUrl: "https://www.youtube.com/s/desktop/286e6262/img/favicon_32x32.png",
             discarded: true
         },
         {
-            favIconUrl: "https://www.youtube.com/s/desktop/edbfd7e1/img/favicon_32x32.png",
-            title: "(4) YouTube",
+            windowId: 1,
             url: "https://www.youtube.com/feed/history",
+            title: "(4) YouTube",
+            favIconUrl: "https://www.youtube.com/s/desktop/edbfd7e1/img/favicon_32x32.png",
             discarded: false
         },
         {
-            favIconUrl: "https://www.youtube.com/s/desktop/321056ae/img/favicon_32x32.png",
-            title: "qweqrfasdadafga - YouTube",
+            windowId: 1,
             url: "https://www.youtube.com/watch?v=k5i4sP9q2Lk",
+            title: "qweqrfasdadafga - YouTube",
+            favIconUrl: "https://www.youtube.com/s/desktop/321056ae/img/favicon_32x32.png",
             discarded: false
         }
     ];
 
-    const toUiComponent = (tab: TrackingTabData) => {
+    const toUiComponent = (tab: TrackingTab) => {
         return (
             <Tooltip title={tab.url}>
                 {tab.discarded ? (
