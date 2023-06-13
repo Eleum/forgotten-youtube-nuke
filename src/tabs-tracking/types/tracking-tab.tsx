@@ -6,3 +6,7 @@ export interface TrackingTab {
     favIconUrl?: string;
     discarded: boolean;
 }
+
+export interface TrackingTabWithDate extends TrackingTab {
+    date: Date
+}
