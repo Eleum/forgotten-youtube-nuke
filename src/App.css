@@ -13,7 +13,13 @@
   margin: 1em;
 }
 
-.dummy-tracking > button {
+.dummy-tracking > div {
+  display: flex;
+  flex-direction: column;
   margin: 0.5em;
+}
+
+.dummy-tracking > * button {
   justify-content: flex-start;
+  margin-top: 0.5em;
 }
