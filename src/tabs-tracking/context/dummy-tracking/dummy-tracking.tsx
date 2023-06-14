@@ -1,5 +1,5 @@
-import { YouTube } from "@mui/icons-material";
-import { Button, Tooltip, Typography } from "@mui/material";
+import { ExpandMore, YouTube } from "@mui/icons-material";
+import { Accordion, AccordionDetails, AccordionSummary, Button, Tooltip, Typography } from "@mui/material";
 import { TrackingTab, TrackingTabWithDate } from "../../types/tracking-tab";
 import { TrackingPeriod } from "../../types/tracking-period";
 import { addDays, addMonths, addWeeks, minTime, setDay, startOfMonth, startOfToday, startOfWeek } from "date-fns";
@@ -54,23 +54,21 @@ export function DummyTracking() {
     const fromThisMonth = startOfMonth(addMonths(fromToday, -1));
 
     const periods = [
-        fromToday,
-        fromThisWeek,
-        fromLastWeek,
-        fromTwoWeeks,
-        fromThisMonth,
-        undefined
-    ].map(selector => ({
-        from: selector,
+        [fromToday, "today"],
+        [fromThisWeek, "this week"],
+        [fromLastWeek, "last week"],
+        [fromTwoWeeks, "two weeks ago"],
+        [fromThisMonth, "this month"],
+        [undefined, "other"]
+    ].map(period => ({
+        title: period[1],
+        from: period[0],
         items: []
     }) as TrackingPeriod);
 
     AssignTabsToPeriods(data, periods);
 
     const toUiComponent = (period: TrackingPeriod) => {
-        const UNDEFINED_PERIOD_KEY = "UNDEFINED-PERIOD-KEY";
-        const periodFrom = period.from?.toString();
-
         const toTabUiComponent = (tab: TrackingTab) => {
             return (
                 <Tooltip key={tab.id} title={tab.url}>
@@ -82,13 +80,21 @@ export function DummyTracking() {
                 </Tooltip>
             );
         }
-        
+
         return (
-            <div key={periodFrom ?? UNDEFINED_PERIOD_KEY}>
-                <Typography variant="caption" display="block">
-                    {period.from == undefined ? "others" : `from ${periodFrom}`}
-                </Typography>
-                {period.items.map(toTabUiComponent)}
+            <div key={period.title}>
+                <Accordion>
+                    <AccordionSummary expandIcon={<ExpandMore />} disabled={period.items.length == 0}>
+                        <Typography variant="caption">
+                            {`(${period.items.length}) ${period.title.toUpperCase()}`}
+                        </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <div className="period-details">
+                            {period.items.map(toTabUiComponent)}
+                        </div>
+                    </AccordionDetails>
+                </Accordion>
             </div>
         );
     };
