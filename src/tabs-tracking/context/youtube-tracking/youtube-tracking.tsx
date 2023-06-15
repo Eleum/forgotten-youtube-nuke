@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTabsByQuery } from "../../services/tabs-api-service";
+import { getTabsByQuery } from "../../services/tabs-service";
 import { TrackingTab } from "../../types/tracking-tab";
 import { storeTabsData } from "../../services/storage-service";
 
