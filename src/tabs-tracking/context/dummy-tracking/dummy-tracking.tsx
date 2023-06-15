@@ -1,8 +1,7 @@
-import { ExpandMore, YouTube } from "@mui/icons-material";
-import { Accordion, AccordionDetails, AccordionSummary, Badge, Button, Tooltip, Typography } from "@mui/material";
 import { TrackingTab, TrackingTabWithDate } from "../../types/tracking-tab";
 import { TrackingPeriod } from "../../types/tracking-period";
 import { addDays, addMonths, addWeeks, minTime, setDay, startOfMonth, startOfToday, startOfWeek } from "date-fns";
+import { toPeriodComponent } from "../../services/components-service";
 
 export function DummyTracking() {
     const dummyData: TrackingTab[] = [
@@ -68,43 +67,9 @@ export function DummyTracking() {
 
     AssignTabsToPeriods(data, periods);
 
-    const toUiComponent = (period: TrackingPeriod) => {
-        const toTabUiComponent = (tab: TrackingTab) => {
-            return (
-                <Tooltip key={tab.id} title={tab.url}>
-                    {tab.discarded ? (
-                        <Button variant="outlined" startIcon={<YouTube />} color="error">{tab.title}</Button>
-                    ) : (
-                        <Button variant="contained" startIcon={<YouTube />} color="error" disableElevation>{tab.title}</Button>
-                    )}
-                </Tooltip>
-            );
-        }
-
-        const discarded = period.items.filter(item => item.discarded);
-
-        return (
-            <div key={period.title}>
-                <Accordion>
-                    <AccordionSummary expandIcon={<ExpandMore />} disabled={period.items.length == 0}>
-                        <Typography variant="subtitle2">
-                            {`${period.title.toUpperCase()} `}
-                            {discarded.length == 0 ? "" : `(${discarded.length})`}
-                        </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <div className="period-details">
-                            {period.items.map(toTabUiComponent)}
-                        </div>
-                    </AccordionDetails>
-                </Accordion>
-            </div>
-        );
-    };
-
     return (
         <div className="dummy-tracking">
-            {periods.map(toUiComponent)}
+            {periods.map(toPeriodComponent)}
         </div>
     );
 }
