@@ -1,5 +1,5 @@
 import { ExpandMore, YouTube } from "@mui/icons-material";
-import { Accordion, AccordionDetails, AccordionSummary, Button, Tooltip, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Badge, Button, Tooltip, Typography } from "@mui/material";
 import { TrackingTab, TrackingTabWithDate } from "../../types/tracking-tab";
 import { TrackingPeriod } from "../../types/tracking-period";
 import { addDays, addMonths, addWeeks, minTime, setDay, startOfMonth, startOfToday, startOfWeek } from "date-fns";
@@ -81,12 +81,15 @@ export function DummyTracking() {
             );
         }
 
+        const discarded = period.items.filter(item => item.discarded);
+
         return (
             <div key={period.title}>
                 <Accordion>
                     <AccordionSummary expandIcon={<ExpandMore />} disabled={period.items.length == 0}>
-                        <Typography variant="caption">
-                            {`(${period.items.length}) ${period.title.toUpperCase()}`}
+                        <Typography variant="subtitle2">
+                            {`${period.title.toUpperCase()} `}
+                            {discarded.length == 0 ? "" : `(${discarded.length})`}
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>

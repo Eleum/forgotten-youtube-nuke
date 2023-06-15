@@ -1,7 +1,7 @@
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
-import './App.css';
+import { ThemeProvider, createTheme } from '@mui/material';
 import { DummyTracking } from './tabs-tracking/context/dummy-tracking/dummy-tracking';
 import { YoutubeTracking } from './tabs-tracking/context/youtube-tracking/youtube-tracking';
+import './App.css';
 
 const darkTheme = createTheme({
   palette: {
