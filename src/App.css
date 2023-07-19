@@ -1,28 +1,33 @@
 .App {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: #282c34;
   color: white;
 }
 
-.youtube-tracking, .dummy-tracking {
+.content-tracking {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex: 1;
-  margin: 1em;
+  align-items: stretch;
 }
 
-.dummy-tracking > div {
+.content-tracking-title {
+  text-align: center;
+}
+
+.periods-content>div {
   margin: 0.5em;
 }
 
-.dummy-tracking > * .period-details {
+.periods-content>* .period-details {
   display: flex;
   flex-direction: column;
 }
 
-.dummy-tracking > * button {
+.content-tracking>* button {
   justify-content: flex-start;
-  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }

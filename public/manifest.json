@@ -1,11 +1,11 @@
 {
   "name": "forgotten-youtube-nuke",
-  "description": "Analyzes opened YouTube browser tabs and nukes them if they are left hanging for too long",
+  "description": "Analyzes open YouTube browser tabs and nukes them if they are left hanging for too long",
   "version": "0.3",
   "manifest_version": 3,
   "action": {
     "default_popup": "index.html",
-    "default_title": "Open the popup"
+    "default_title": "I'm an extension"
   },
   "icons": {
     "16": "logo192.png",
