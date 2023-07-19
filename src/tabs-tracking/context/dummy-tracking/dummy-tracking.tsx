@@ -68,8 +68,11 @@ export function DummyTracking() {
     AssignTabsToPeriods(data, periods);
 
     return (
-        <div className="dummy-tracking">
-            {periods.map(toPeriodComponent)}
+        <div className="content-tracking" id="dummy-tracking">
+            <h2 className="content-tracking-title">DUMMY</h2>
+            <div className="periods-content">
+                {periods.map(toPeriodComponent)}
+            </div>
         </div>
     );
 }

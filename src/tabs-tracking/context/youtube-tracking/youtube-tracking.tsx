@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getTabsByQuery } from "../../services/tabs-service";
 import { TrackingTab } from "../../types/tracking-tab";
 import { storeTabsData } from "../../services/storage-service";
+import { toTabComponent } from "../../services/components-service";
 
 export function YoutubeTracking() {
     const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/)/;
@@ -44,20 +45,12 @@ export function YoutubeTracking() {
         updateBadge();
     }, [tabs]);
 
-    //TODO: move into separate module?
-    const toTabComponent = (tab: TrackingTab) => {
-        return (
-            <li>
-                <img src={tab.favIconUrl} style={{ height: 16, width: 16 }}></img>
-                {tab.title} | {tab.url}
-            </li>
-        );
-    }
-
     return (
-        <div className="youtube-tracking">
-            <h2>YOUTUBE TRACKING AREA</h2>
-            <ul>{tabs.map(toTabComponent)}</ul>
+        <div className="content-tracking" id="youtube-tracking">
+            <h2 className="content-tracking-title">YOUTUBE TRACKING AREA</h2>
+            <div className="periods-content">
+                {tabs.map(toTabComponent)}
+            </div>
         </div>
     );
 }

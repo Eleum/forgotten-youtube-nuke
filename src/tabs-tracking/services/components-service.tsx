@@ -25,7 +25,7 @@ export function toPeriodComponent(period: TrackingPeriod) {
     );
 };
 
-function toTabComponent(tab: TrackingTab) {
+export function toTabComponent(tab: TrackingTab) {
     return (
         <Tooltip key={tab.id} title={tab.url}>
             {tab.discarded ? (
