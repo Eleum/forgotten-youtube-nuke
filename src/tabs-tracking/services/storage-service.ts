@@ -24,5 +24,3 @@ export function storeTabsData(...tabs: TrackingTab[]) {
         console.error(`Error setting session's tab data: ${reason}`);
     });
 }
-
-export default {};

@@ -16,5 +16,3 @@ export async function getTabsByQuery(query: chrome.tabs.QueryInfo) {
         discarded: tab.discarded || tab.status == UNLOADED_TAB_STATUS
     }) as TrackingTab);
 };
-
-export default {};
