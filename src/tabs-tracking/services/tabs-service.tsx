@@ -1,6 +1,7 @@
 import { TrackingTab } from "../types/tracking-tab";
 
-const UNDEFINED_TAB = "UNDEFINED TAB";
+const UNDEFINED_TAB = "UNDEFINED";
+const UNLOADED_TAB_STATUS = "unloaded";
 
 export async function getTabsByQuery(query: chrome.tabs.QueryInfo) {
     let tabs = await chrome.tabs.query(query);
@@ -12,7 +13,7 @@ export async function getTabsByQuery(query: chrome.tabs.QueryInfo) {
         url: tab.url,
         title: tab.title ?? UNDEFINED_TAB,
         favIconUrl: tab.favIconUrl,
-        discarded: tab.discarded
+        discarded: tab.discarded || tab.status == UNLOADED_TAB_STATUS
     }) as TrackingTab);
 };
 
