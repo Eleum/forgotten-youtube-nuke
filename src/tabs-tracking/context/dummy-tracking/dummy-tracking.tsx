@@ -2,6 +2,7 @@ import { TrackingTab, TrackingTabWithDate } from "../../types/tracking-tab";
 import { TrackingPeriod } from "../../types/tracking-period";
 import { addDays, addMonths, addWeeks, minTime, setDay, startOfMonth, startOfToday, startOfWeek } from "date-fns";
 import { toPeriodComponent } from "../../services/components-service";
+import { useMemo } from "react";
 
 export function DummyTracking() {
     const dummyData: TrackingTab[] = [
@@ -66,6 +67,15 @@ export function DummyTracking() {
     }) as TrackingPeriod);
 
     AssignTabsToPeriods(data, periods);
+
+    const worker: Worker = useMemo(
+        () => new Worker(new URL("../../services/workers/tabs-discarder-service.ts", import.meta.url)), 
+        []
+    );
+
+    worker.onmessage = (e: MessageEvent<string>) => {
+        console.log(`worker message: ${e.data}`);
+    };
 
     return (
         <div className="content-tracking" id="dummy-tracking">
