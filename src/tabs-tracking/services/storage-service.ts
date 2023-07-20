@@ -1,5 +1,5 @@
 import { TrackingTab } from "../types/tracking-tab";
-import { TrackingTabDataModel } from "../types/tracking-tab-data-model";
+import { TrackingTabDataModel } from "../types/storage/tracking-tab-data-model";
 
 const UNDEFINED_TAB_ID = "UNDEFINED-TAB-ID";
 const SESSION_STORAGE_KEY = "SESSION-TABS";
